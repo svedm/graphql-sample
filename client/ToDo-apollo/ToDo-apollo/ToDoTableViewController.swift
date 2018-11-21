@@ -19,7 +19,7 @@ class ToDoTableViewController: UITableViewController {
         loadData()
     }
 
-    private func loadData(_ completion: (() -> Void)? = nil ) {
+    private func loadData(_ completion: (() -> Void)? = nil) {
         apollo.fetch(query: ToDoListQuery()) { (result, error) in
             guard let list = result?.data?.toDoList else { return print(error ?? "err") }
 

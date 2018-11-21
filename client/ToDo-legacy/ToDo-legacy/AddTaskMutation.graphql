@@ -1,0 +1,6 @@
+mutation AddTask($task: ToDoTaskInput!) {
+    add(task: $task) {
+        id
+        name
+    }
+}
