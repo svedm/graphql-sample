@@ -28,7 +28,7 @@ namespace TodoList.GraphQL
 
         public Task<ToDoTask> GetByIdAsync(int id)
         {
-            return Task.FromResult(ToDoList.FirstOrDefault(x => x.Id == id));
+            return Task.FromResult(ToDoList.First(x => x.Id == id));
         }
 
         public Task<ToDoTask> AddAsync(ToDoTask toDoTask) {
@@ -39,7 +39,7 @@ namespace TodoList.GraphQL
 
         public Task<ToDoTask> RemoveByIdAsync(int id)
         {
-            var item = ToDoList.FirstOrDefault(x => x.Id == id);
+            var item = ToDoList.First(x => x.Id == id);
             ToDoList.Remove(item);
             return Task.FromResult(item);
         }

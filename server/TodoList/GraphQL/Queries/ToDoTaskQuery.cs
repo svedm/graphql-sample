@@ -8,7 +8,7 @@ namespace TodoList.GraphQL.Queries
         public ToDoTaskQuery(ToDoTaskStore taskStore)
         {
             Name = "Query";
-            Field<NonNullGraphType<ToDoTaskType>>("toDoTask", arguments: new QueryArguments(
+            Field<ToDoTaskType>("toDoTask", arguments: new QueryArguments(
                 new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "id", Description = "id of ToDoTask" }
             ), resolve: c => taskStore.GetByIdAsync(c.GetArgument<int>("id")));
             Field<NonNullGraphType<ListGraphType<NonNullGraphType<ToDoTaskType>>>>("toDoList",
