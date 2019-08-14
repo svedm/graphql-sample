@@ -47,7 +47,7 @@ protocol GraphQLClient {
         query: String,
         variables: [String: AnyEncodable],
         completion: @escaping (Result<T, ToDoNetworkError>) -> Void
-        ) -> NetworkTask
+    ) -> NetworkTask
 }
 
 class GraphQLNetworkClient: GraphQLClient {
