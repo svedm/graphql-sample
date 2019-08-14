@@ -20,11 +20,16 @@ class ToDoTableViewController: UITableViewController {
     }
 
     private func loadData(_ completion: (() -> Void)? = nil) {
-        apollo.fetch(query: ToDoListQuery()) { (result, error) in
-            guard let list = result?.data?.toDoList else { return print(error ?? "err") }
+        apollo.fetch(query: ToDoListQuery()) { result in
+            switch result {
+                case .success(let response):
+                    guard let list = response.data?.toDoList else { return print("Empty data") }
 
-            self.data = list
-            self.tableView.reloadData()
+                    self.data = list
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
             completion?()
         }
     }
@@ -36,11 +41,16 @@ class ToDoTableViewController: UITableViewController {
         controller.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             guard let text = controller.textFields?.first?.text else { return }
 
-            self.apollo.perform(mutation: AddTaskMutation(task: ToDoTaskInput(name: text))) { (result, error) in
-                guard let task = result?.data?.add else { return }
+            self.apollo.perform(mutation: AddTaskMutation(task: ToDoTaskInput(name: text))) { result in
+                switch result {
+                    case .success(let response):
+                        guard let task = response.data?.add else { return }
 
-                self.data.append(ToDoListQuery.Data.ToDoList(id: task.id, name: task.name))
-                self.tableView.insertRows(at: [IndexPath(item: self.data.count - 1, section: 0)], with: .left)
+                        self.data.append(ToDoListQuery.Data.ToDoList(id: task.id, name: task.name))
+                        self.tableView.insertRows(at: [IndexPath(item: self.data.count - 1, section: 0)], with: .left)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
             }
         }))
         present(controller, animated: true, completion: nil)
@@ -65,11 +75,16 @@ class ToDoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        apollo.perform(mutation: RemoveTaskMutation(id: data[indexPath.item].id)) { (result, error) in
-            guard result?.data?.remove != nil else { return }
+        apollo.perform(mutation: RemoveTaskMutation(id: data[indexPath.item].id)) { result in
+            switch result {
+                case .success(let response):
+                    guard response.data?.remove != nil else { return }
 
-            self.data.remove(at: indexPath.item)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.data.remove(at: indexPath.item)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
         }
     }
 
