@@ -23,10 +23,12 @@ class ToDoTableViewController: UITableViewController {
         apollo.fetch(query: ToDoListQuery()) { result in
             switch result {
                 case .success(let response):
-                    guard let list = response.data?.toDoList else { return print("Empty data") }
-
-                    self.data = list
-                    self.tableView.reloadData()
+                    if let list = response.data?.toDoList {
+                        self.data = list
+                        self.tableView.reloadData()
+                    } else if let errors = response.errors {
+                        errors.forEach { print( $0.description) }
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
             }

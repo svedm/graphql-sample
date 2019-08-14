@@ -163,13 +163,21 @@ class ToDoTableViewController: UITableViewController {
     }
 
     private func loadData(_ completion: (() -> Void)? = nil) {
-        client.request(query: GraphQLConstants.toDoListQuery, variables: [:]) { (result: Result<ToDoList, ToDoNetworkError>) in
+        client.request(
+            query: GraphQLConstants.toDoListQuery,
+            variables: [:]
+        ) { (result: Result<ToDoList, ToDoNetworkError>) in
             switch result {
                 case .success(let data):
                     self.data = data.toDoList
                     self.tableView.reloadData()
-                case .failure:
-                    print("error")
+                case .failure(let error):
+                    switch error {
+                        case .generic(let graphQLErrors):
+                            graphQLErrors.forEach { print($0.message) }
+                        case .network(let networkError):
+                            print(networkError.localizedDescription)
+                    }
             }
             completion?()
         }
