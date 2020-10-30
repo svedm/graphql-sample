@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 using TodoList.GraphQL.Types;
 
 namespace TodoList.GraphQL.Queries

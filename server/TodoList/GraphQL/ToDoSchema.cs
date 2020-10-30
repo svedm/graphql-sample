@@ -1,5 +1,6 @@
-﻿using GraphQL;
+﻿using System;
 using GraphQL.Types;
+using Microsoft.Extensions.DependencyInjection;
 using TodoList.GraphQL.Mutations;
 using TodoList.GraphQL.Queries;
 
@@ -7,10 +8,10 @@ namespace TodoList.GraphQL
 {
     public class ToDoSchema : Schema
     {
-        public ToDoSchema(IDependencyResolver resolver) : base(resolver)
+        public ToDoSchema(IServiceProvider provider) : base(provider)
         {
-            Query = resolver.Resolve<ToDoTaskQuery>();
-            Mutation = resolver.Resolve<ToDoTaskMutation>();
+            Query = provider.GetRequiredService<ToDoTaskQuery>();
+            Mutation = provider.GetRequiredService<ToDoTaskMutation>();
         }
     }
 }
