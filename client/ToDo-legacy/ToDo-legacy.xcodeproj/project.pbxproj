@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,11 +12,11 @@
 		3A72DBFB21A5A4F3009B7431 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DBF921A5A4F3009B7431 /* Main.storyboard */; };
 		3A72DBFD21A5A4F4009B7431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DBFC21A5A4F4009B7431 /* Assets.xcassets */; };
 		3A72DC0021A5A4F4009B7431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DBFE21A5A4F4009B7431 /* LaunchScreen.storyboard */; };
-		3A72DC0921A5A61A009B7431 /* Legacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A72DC0821A5A61A009B7431 /* Legacy.framework */; };
 		3A72DC0E21A5A9DE009B7431 /* RemoveTaskMutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DC0B21A5A9DE009B7431 /* RemoveTaskMutation.graphql */; };
 		3A72DC0F21A5A9DE009B7431 /* ToDoListQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DC0C21A5A9DE009B7431 /* ToDoListQuery.graphql */; };
 		3A72DC1021A5A9DE009B7431 /* AddTaskMutation.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3A72DC0D21A5A9DE009B7431 /* AddTaskMutation.graphql */; };
 		3A72DC1521A5AA5F009B7431 /* GraphQLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A72DC1421A5AA5F009B7431 /* GraphQLConstants.swift */; };
+		6657E49B254C683F00B58BB6 /* Legacy in Frameworks */ = {isa = PBXBuildFile; productRef = 6657E49A254C683F00B58BB6 /* Legacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,6 @@
 		3A72DBFC21A5A4F4009B7431 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A72DBFF21A5A4F4009B7431 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A72DC0121A5A4F4009B7431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A72DC0821A5A61A009B7431 /* Legacy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Legacy.framework; path = Carthage/Build/iOS/Legacy.framework; sourceTree = "<group>"; };
 		3A72DC0B21A5A9DE009B7431 /* RemoveTaskMutation.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RemoveTaskMutation.graphql; sourceTree = "<group>"; };
 		3A72DC0C21A5A9DE009B7431 /* ToDoListQuery.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDoListQuery.graphql; sourceTree = "<group>"; };
 		3A72DC0D21A5A9DE009B7431 /* AddTaskMutation.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddTaskMutation.graphql; sourceTree = "<group>"; };
@@ -39,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A72DC0921A5A61A009B7431 /* Legacy.framework in Frameworks */,
+				6657E49B254C683F00B58BB6 /* Legacy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +82,6 @@
 		3A72DC0721A5A61A009B7431 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3A72DC0821A5A61A009B7431 /* Legacy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,13 +104,15 @@
 				3A72DBEE21A5A4F3009B7431 /* Sources */,
 				3A72DBEF21A5A4F3009B7431 /* Frameworks */,
 				3A72DBF021A5A4F3009B7431 /* Resources */,
-				3A72DC0A21A5A629009B7431 /* Carthage */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "ToDo-legacy";
+			packageProductDependencies = (
+				6657E49A254C683F00B58BB6 /* Legacy */,
+			);
 			productName = "ToDo-legacy";
 			productReference = 3A72DBF221A5A4F3009B7431 /* ToDo-legacy.app */;
 			productType = "com.apple.product-type.application";
@@ -124,7 +124,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = Svedm;
 				TargetAttributes = {
 					3A72DBF121A5A4F3009B7431 = {
@@ -142,6 +142,9 @@
 				Base,
 			);
 			mainGroup = 3A72DBE921A5A4F3009B7431;
+			packageReferences = (
+				6657E499254C683F00B58BB6 /* XCRemoteSwiftPackageReference "legacy" */,
+			);
 			productRefGroup = 3A72DBF321A5A4F3009B7431 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,28 +169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3A72DC0A21A5A629009B7431 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Legacy.framework",
-			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A72DBEE21A5A4F3009B7431 /* Sources */ = {
@@ -248,6 +229,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -309,6 +291,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -344,10 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6WCU73Y7FL;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ToDo-legacy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -366,10 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6WCU73Y7FL;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ToDo-legacy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -404,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6657E499254C683F00B58BB6 /* XCRemoteSwiftPackageReference "legacy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eugeneego/legacy";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6657E49A254C683F00B58BB6 /* Legacy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6657E499254C683F00B58BB6 /* XCRemoteSwiftPackageReference "legacy" */;
+			productName = Legacy;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A72DBEA21A5A4F3009B7431 /* Project object */;
 }
